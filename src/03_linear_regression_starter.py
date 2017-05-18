@@ -8,6 +8,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tensorflow as tf
 import xlrd
+def huber_loss(label, prediction, thres = 1.0	):
+	"""
+	method declare the loss by using Huber formular
+	:return:
+	"""
+	residual = tf.abs(prediction - label)
+	condition = tf.less(residual, thres)
+	res_small = tf.square(prediction - label)
+	res_large = residual - 1/2*tf.square(thres)
+	return tf.where(condition, res_small, res_large)
 
 DATA_FILE = '../data/fire_theft.xls'
 
@@ -31,8 +41,9 @@ Y_predicted = X*W + b
 # Step 5: use the square error as the loss function
 # name your variable loss
 loss = tf.square(Y_predicted - Y, "loss")
+loss_vs2 = huber_loss(Y, Y_predicted)
 # Step 6: using gradient descent with learning rate of 0.01 to minimize loss
-optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001).minimize(loss)
+optimizer = tf.train.GradientDescentOptimizer(learning_rate=0.001).minimize(loss_vs2)
 init = tf.global_variables_initializer()
 W_arr = []
 b_val = 0

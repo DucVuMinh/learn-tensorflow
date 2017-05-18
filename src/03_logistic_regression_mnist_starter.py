@@ -24,12 +24,17 @@ mnist = input_data.read_data_sets('/data/mnist', one_hot=True)
 # therefore, each image is represented with a 1x784 tensor
 # there are 10 classes for each image, corresponding to digits 0 - 9. 
 
+X = tf.placeholder(dtype= tf.float16, shape= [None, 784])
+Y = tf.placeholder(dtype= tf.float16, shape = [None, 10])
+
 
 # Step 3: create weights and bias
 # weights and biases are initialized to 0
 # shape of w depends on the dimension of X and Y so that Y = X * w + b
 # shape of b depends on Y
 
+w = tf.Variable(tf.zeros(shape=[784,10]))
+b = tf.Variable(tf.zeros(shape=[1,10]))
 
 # Step 4: build model
 # the model that returns the logits.
