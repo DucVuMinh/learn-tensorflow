@@ -11,7 +11,7 @@ NUM_CLASSES = 10
 example_len = [1, 2, 3, 8]
 
 # The classes of the examples at each step (between 1 and 9, 0 means padding)
-y = np.random.randint(1, 10, [B, T])
+y = np.random.randint(-5, 10, [B, T])
 for i, length in enumerate(example_len):
     y[i, length:] = 0
 
