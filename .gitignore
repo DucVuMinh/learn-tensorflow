@@ -1,3 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/markdown-navigator/
 .idea/preferred-vcs.xml
+bin/
+include/
+lib/
+pip-selfcheck.json
